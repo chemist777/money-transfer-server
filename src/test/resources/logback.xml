@@ -1,0 +1,16 @@
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%d{dd-MMM-yyyy HH:mm:ss.SSS, Europe/Moscow}] %5p [%t %logger:%L %X{ip}-%X{requestId}] - %m%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.chemist" level="TRACE"/>
+
+    <root level="WARN">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>
