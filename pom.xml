@@ -59,6 +59,7 @@
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
         </dependency>
+        <!-- guava is only used to provide Cache implementation -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
