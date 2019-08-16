@@ -7,7 +7,7 @@ It stores all the data in memory and doesn't support persistence and crash recov
 But it supports various cool features:
 
 - Non-blocking network IO using reactor-netty.
-- Non-blocking money transfers using CAS (compare and swap).
+- Lock-free money transfers using CAS (compare and swap).
 - Idempotent REST API using `Idempotention-Key` header, so client shouldn't worry about HTTP request retries.
 
 However this server should be improved a lot to be production ready.
