@@ -1,4 +1,4 @@
-package com.chemist.moneytransfer.core;
+package com.chemist.moneytransfer.processing;
 
 import com.chemist.moneytransfer.server.Config;
 import com.chemist.moneytransfer.server.ServerTest;

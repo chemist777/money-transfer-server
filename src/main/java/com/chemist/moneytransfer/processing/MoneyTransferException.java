@@ -1,4 +1,4 @@
-package com.chemist.moneytransfer.core;
+package com.chemist.moneytransfer.processing;
 
 public class MoneyTransferException extends RuntimeException {
     private final int httpCode;

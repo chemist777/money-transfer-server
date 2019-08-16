@@ -1,7 +1,7 @@
 package com.chemist.moneytransfer.server;
 
 
-import com.chemist.moneytransfer.core.InMemoryMoneyTransferService;
+import com.chemist.moneytransfer.processing.InMemoryMoneyTransferService;
 import io.netty.channel.ChannelOption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

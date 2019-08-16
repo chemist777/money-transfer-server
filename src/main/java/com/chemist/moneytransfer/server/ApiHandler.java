@@ -1,7 +1,7 @@
 package com.chemist.moneytransfer.server;
 
-import com.chemist.moneytransfer.core.MoneyTransferException;
-import com.chemist.moneytransfer.core.MoneyTransferService;
+import com.chemist.moneytransfer.processing.MoneyTransferException;
+import com.chemist.moneytransfer.processing.MoneyTransferService;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.handler.codec.http.HttpHeaderNames;

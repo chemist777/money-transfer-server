@@ -1,4 +1,4 @@
-package com.chemist.moneytransfer.core;
+package com.chemist.moneytransfer.processing;
 
 import java.math.BigDecimal;
 import java.util.concurrent.CompletableFuture;
