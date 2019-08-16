@@ -16,11 +16,15 @@ However this server should be improved a lot to be production ready.
 
 Java 11 to run and Maven to build.
 
-## Running
+## Building and running
 
-`java -jar money-transfer-server.jar`
+`mvn package`
+
+`java -jar target/money-transfer-server.jar`
 
 ## Server configuration
+
+Following properties can be set in Config class file.
 
 | Name | Data type | Description | Default value |
 | ---- | --------- | ----------- | ------------- |
