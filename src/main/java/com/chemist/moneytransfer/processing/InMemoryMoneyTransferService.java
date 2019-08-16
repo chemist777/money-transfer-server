@@ -76,40 +76,24 @@ public class InMemoryMoneyTransferService implements MoneyTransferService {
     private void transfer(AtomicReference<BigDecimal> senderBalanceRef,
                           AtomicReference<BigDecimal> recipientBalanceRef,
                           BigDecimal amount) {
-        //actual money transfer is done using CAS loop
+        //actual money transfer is done using CAS loops
+
+        //remove money from sender balance
         for (; ; ) {
             BigDecimal senderBalance = senderBalanceRef.get();
+
             if (senderBalance.compareTo(amount) < 0)
                 throw new MoneyTransferException(500, "Sender doesn't have enough money.");
-            BigDecimal recipientBalance = recipientBalanceRef.get();
 
             var newSenderBalance = senderBalance.subtract(amount);
-            var newRecipientBalance = recipientBalance.add(amount);
-
-            if (senderBalanceRef.compareAndSet(senderBalance, newSenderBalance)) {
-                if (recipientBalanceRef.compareAndSet(recipientBalance, newRecipientBalance)) {
-                    //successful transfer
-                    break;
-                } else {
-                    //rollback senderBalance and try again
-                    returnTakenAmountBackToBalance(senderBalanceRef, amount);
-                }
-            }
+            if (senderBalanceRef.compareAndSet(senderBalance, newSenderBalance)) break;
         }
-    }
 
-    /**
-     * Returns taken amount back to account balance.<br/>
-     * Ignores transaction timeout.
-     *
-     * @param accountBalanceRef target account balance
-     * @param amount            returning amount
-     */
-    private void returnTakenAmountBackToBalance(AtomicReference<BigDecimal> accountBalanceRef, BigDecimal amount) {
+        //add money to recipient balance
         for (; ; ) {
-            BigDecimal balance = accountBalanceRef.get();
-            BigDecimal newBalance = balance.add(amount);
-            if (accountBalanceRef.compareAndSet(balance, newBalance)) break;
+            BigDecimal recipientBalance = recipientBalanceRef.get();
+            var newRecipientBalance = recipientBalance.add(amount);
+            if (recipientBalanceRef.compareAndSet(recipientBalance, newRecipientBalance)) break;
         }
     }
 
